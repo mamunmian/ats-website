@@ -1,52 +1,835 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aynapur Technical School</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-top {
+            background: rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1e3c72;
+            font-size: 1.2rem;
+        }
+
+        .school-info h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .school-info p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .header-contact {
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0,0,0,0.1);
+            padding: 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1rem;
+            display: block;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu li a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #ff6b35;
+            padding-bottom: 0.5rem;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #1e3c72;
+            color: white;
+            font-weight: bold;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Notices */
+        .notice-item {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 4px solid #f39c12;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+
+        .notice-date {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .notice-title {
+            font-weight: bold;
+            color: #e17055;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #1e3c72;
+        }
+
+        .contact-card h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info strong {
+            display: inline-block;
+            width: 80px;
+            color: #666;
+        }
+
+        /* Staff Cards */
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .staff-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .staff-photo {
+            width: 80px;
+            height: 80px;
+            background: #1e3c72;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .staff-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+
+        .staff-position {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .staff-contact {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Managing Committee */
+        .committee-member {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .member-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-position {
+            color: #28a745;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .staff-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .active-section {
+            display: block;
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <img src="assets/logo.png" alt="School Logo" class="logo">
-        <h1>Aynapur Technical School</h1>
-        <p>Village: Aynapur, Tangail Sadar, Tangail, Bangladesh</p>
-        <p>Established: 2015 | School Code (Board): 54227 | EIIN: 137584</p>
-    </header>
-    <main>
-
-        <section class="underconstruction">
-            <h2>Website Under Development</h2>
-            <p>This website is under development. Some information might not be accurate or might not updated. Thank you for your understanding.</p>
-        </section>
+        <div class="header-top">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <span>📧 ats.aynapur2014@gmail.com | 📞 +88 01309137584</span>
+                    <span>🌐 EIIN: 137584 | School Code: 54227</span>
+                </div>
+            </div>
+        </div>
         
-        <section class="about">
-            <h2>About Us</h2>
-            <p>It is a Non-government Technical And Vocational school. This institute's EIIN number is 137584. This institute is located in Aynapur, Tangail Sadar, Dhaka Division. It offers classes up to SSC.</p>
-        </section>
-        <section class="news">
-            <h2>Latest News</h2>
-            <ul>
-                <li>Admission Open for 2025 Session</li>
-                <li>Workshop on IoT & Embedded Systems - Aug 20</li>
-                <li>New Computer Lab Inauguration - Sept 1</li>
-            </ul>
-        </section>
-        <section class="follow">
-            <h2>Follow us on Facebook:</h2>
-            <p><a href="https://www.facebook.com/aynapurtechnicalschool">Aynapur Technical School</a></p>
-        </section>
-        <section class="contact">
-            <h2>Contact Us</h2>
-            <p>Email: ats.aynapur2014@gmail.com</p>
-            <p>Phone: +88 01309137584</p>
-            <p>Location: Aynapur, Tangail Sadar, Tangail, Bangladesh</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Aynapur Technical School</p>
-    </footer>
-</body>
-</html>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">ACPS</div>
+                    <div class="school-info">
+                        <h1>Aynapur Technical School</h1>
+                        <p>Excellence in Education Since 2015</p>
+                    </div>
+                </div>
+                <div class="header-contact">
+                    <div>Vill: Aynapur, Tangail Sadar</div>
+                    <div>Tangail, Bangladesh</div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li><a href="#" onclick="showSection('overview')">Overview</a></li>
+                    <li><a href="#" onclick="showSection('curriculum')">Curriculum</a></li>
+                    <li><a href="#" onclick="showSection('students')">Students</a></li>
+                    <li><a href="#" onclick="showSection('teachers')">Teachers</a></li>
+                    <li><a href="#" onclick="showSection('staff')">Staff</a></li>
+                    <li><a href="#" onclick="showSection('notices')">Notices</a></li>
+                    <li><a href="#" onclick="showSection('management')">Management</a></li>
+                    <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Overview Section -->
+            <section id="overview" class="section active-section">
+                <h2 class="section-title">Institution Overview</h2>
+                <div class="overview-grid">
+                    <div>
+                        <h3>About Aynapur Technical School</h3>
+                        <p>Aynapur Technical School (ATS) was founded in 2015 under the guidance of the Abdul Aziz Master Memorial and Habibur Rahman Welfare Trust. Situated in Aynapur village, Tangail Sadar, Tangail, Bangladesh, the institution has been delivering quality technical education for over a decade. It has consistently upheld high standards in academic excellence, discipline, and moral integrity.</p>
+                        
+                        <p>ATS operates under the Bangladesh Technical Education Board (BTEB) and strictly adheres to the curriculum approved by the board. The school is dedicated to nurturing well-rounded individuals who demonstrate not only academic achievement but also strong character, leadership skills, and a commitment to serving the nation.</p>
+                        
+                        <div class="info-card">
+                            <h3>Mission Statement</h3>
+                            <p>To deliver quality education that nurtures the intellectual, physical, moral, and social development of students, empowering them to become responsible citizens and future leaders of Bangladesh.</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3>Vision</h3>
+                            <p>To be the leading educational institution in Bangladesh, known for academic excellence, character development, and producing graduates who contribute positively to society.</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="info-card">
+                            <h3>Key Information</h3>
+                            <p><strong>Established:</strong> 2015</p>
+                            <p><strong>EIIN:</strong> 137584</p>
+                            <p><strong>Type:</strong> Technical and Vocational School</p>
+                            <p><strong>Administration:</strong> Managing Committee</p>
+                            <p><strong>Medium:</strong> Bengali & English</p>
+                            <p><strong>Classes:</strong> Class XI to SSC</p>
+                            <p><strong>Total Students:</strong> 540</p>
+                            <p><strong>Faculty:</strong> 8 Teachers</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3>Facilities</h3>
+                            <ul>
+                                <li>Modern Classrooms</li>
+                                <li>Science Laboratories</li>
+                                <li>Computer Lab</li>
+                                <li>Library</li>
+                                <li>Sports Complex</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Curriculum Section -->
+            <section id="curriculum" class="section hidden">
+                <h2 class="section-title">Curriculum & Accreditations</h2>
+                
+                <div class="info-card">
+                    <h3>Curriculum Approvals</h3>
+                    <p><strong>Secondary Curriculum:</strong> Approved by Bangladesh Technical Education Board (BTEB)</p>
+                    <p><strong>Last Updated:</strong> 2025 (According to BTEB Curriculum 2025)</p>
+                </div>
+
+                <h3>Approved Branches by Class</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Class Level</th>
+                                <th>Available Branches/Groups</th>
+                                <th>Subjects</th>
+                                <th>Medium</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Class VI - X</td>
+                                <td>General Education</td>
+                                <td>Bangla, English, Mathematics, General Science, History, Geography, Religion, ICT</td>
+                                <td>Bengali/English</td>
+                            </tr>
+                            <tr>
+                                <td>Class XI - XII</td>
+                                <td>Science Group</td>
+                                <td>Physics, Chemistry, Mathematics, Biology, Bangla, English, ICT</td>
+                                <td>Bengali/English</td>
+                            </tr>
+                            <tr>
+                                <td>Class XI - XII</td>
+                                <td>Business Studies</td>
+                                <td>Accounting, Finance, Business Organization, Economics, Bangla, English</td>
+                                <td>Bengali/English</td>
+                            </tr>
+                            <tr>
+                                <td>Class XI - XII</td>
+                                <td>Humanities</td>
+                                <td>History, Geography, Civics, Economics, Logic, Bangla, English</td>
+                                <td>Bengali/English</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-card">
+                    <h3>Accreditations & Affiliations</h3>
+                    <ul>
+                        <li>Ministry of Education, Government of Bangladesh</li>
+                        <li>Board of Intermediate and Secondary Education, Dhaka</li>
+                        <li>National Curriculum and Textbook Board (NCTB)</li>
+                        <li>Bangladesh Technical Education Board (BTEB)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Student Data Section -->
+            <section id="students" class="section hidden">
+                <h2 class="section-title">Student Information</h2>
+                
+                <h3>Student Distribution by Class</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Class</th>
+                                <th>Boys</th>
+                                <th>Girls</th>
+                                <th>Total Students</th>
+                                <th>Sections</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Play Group</td>
+                                <td>45</td>
+                                <td>38</td>
+                                <td>83</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>Nursery</td>
+                                <td>52</td>
+                                <td>44</td>
+                                <td>96</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>Class I</td>
+                                <td>68</td>
+                                <td>57</td>
+                                <td>125</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>Class II</td>
+                                <td>71</td>
+                                <td>64</td>
+                                <td>135</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>Class III</td>
+                                <td>75</td>
+                                <td>68</td>
+                                <td>143</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>Class IV</td>
+                                <td>78</td>
+                                <td>72</td>
+                                <td>150</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>Class V</td>
+                                <td>82</td>
+                                <td>73</td>
+                                <td>155</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>Class VI</td>
+                                <td>89</td>
+                                <td>76</td>
+                                <td>165</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>Class VII</td>
+                                <td>92</td>
+                                <td>78</td>
+                                <td>170</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>Class VIII</td>
+                                <td>88</td>
+                                <td>82</td>
+                                <td>170</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>Class IX</td>
+                                <td>145</td>
+                                <td>125</td>
+                                <td>270</td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <td>Class X</td>
+                                <td>138</td>
+                                <td>122</td>
+                                <td>260</td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <td>Class XI (Science)</td>
+                                <td>95</td>
+                                <td>75</td>
+                                <td>170</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>Class XI (Business)</td>
+                                <td>45</td>
+                                <td>35</td>
+                                <td>80</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>Class XI (Humanities)</td>
+                                <td>28</td>
+                                <td>22</td>
+                                <td>50</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>Class XII (Science)</td>
+                                <td>88</td>
+                                <td>70</td>
+                                <td>158</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>Class XII (Business)</td>
+                                <td>42</td>
+                                <td>33</td>
+                                <td>75</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>Class XII (Humanities)</td>
+                                <td>25</td>
+                                <td>22</td>
+                                <td>47</td>
+                                <td>2</td>
+                            </tr>
+                            <tr style="background-color: #e3f2fd; font-weight: bold;">
+                                <td>TOTAL</td>
+                                <td>1,467</td>
+                                <td>1,380</td>
+                                <td>2,847</td>
+                                <td>81</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Subject-wise Student Distribution (Classes IX-XII)</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Subject Group</th>
+                                <th>Class IX-X</th>
+                                <th>Class XI-XII</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Science</td>
+                                <td>320</td>
+                                <td>328</td>
+                                <td>648</td>
+                            </tr>
+                            <tr>
+                                <td>Business Studies</td>
+                                <td>125</td>
+                                <td>155</td>
+                                <td>280</td>
+                            </tr>
+                            <tr>
+                                <td>Humanities</td>
+                                <td>85</td>
+                                <td>97</td>
+                                <td>182</td>
+                            </tr>
+                            <tr style="background-color: #e3f2fd; font-weight: bold;">
+                                <td>TOTAL</td>
+                                <td>530</td>
+                                <td>580</td>
+                                <td>1,110</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Teachers Section -->
+            <section id="teachers" class="section hidden">
+                <h2 class="section-title">Teachers & Faculty</h2>
+                
+                <div class="info-card">
+                    <h3>Teaching Staff Summary</h3>
+                    <p><strong>Total Teachers:</strong> 8</p>
+                    <p><strong>Male Teachers:</strong> 4</p>
+                    <p><strong>Female Teachers:</strong> 4</p>
+                    <p><strong>Masters Degree Holders:</strong> 6</p>
+                    <p><strong>PhD Holders:</strong> 0</p>
+                </div>
+
+                <h3>Faculty by Department</h3>
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <div class="staff-photo">MMR</div>
+                        <div class="staff-name">Md. Matiur Rahman</div>
+                        <div class="staff-position">Head Teacher</div>
+                        <div class="staff-contact">📞 +88 01720559233<br>📧 ats.aynapur2014@gmail.com</div>
+                    </div>
+                    
+                    <div class="staff-card">
+                        <div class="staff-photo">RA</div>
+                        <div class="staff-name">Mrs. Rashida Akhter</div>
+                        <div class="staff-position">Vice Principal</div>
+                        <div class="staff-contact">📞 +88 <br>📧 ats.aynapur2014@gmail.com</div>
+                    </div>
+                    
+                    <div class="staff-card">
+                        <div class="staff-photo">KA</div>
+                        <div class="staff-name">Dr. Karim Ahmed</div>
+                        <div class="staff-position">Head of Science Dept.</div>
+                        <div class="staff-contact">📞 +88 <br>📧 ats.aynapur2014@gmail.com</div>
+                    </div>
+                    
+                    <div class="staff-card">
+                        <div class="staff-photo">SB</div>
+                        <div class="staff-name">Mrs. Salma Begum</div>
+                        <div class="staff-position">Head of Bangla Dept.</div>
+                        <div class="staff-contact">📞 +88 <br>📧 ats.aynapur2014@gmail.com</div>
+                    </div>
+                    
+                    <div class="staff-card">
+                        <div class="staff-photo">MI</div>
+                        <div class="staff-name">Mr. Mizanur Islam</div>
+                        <div class="staff-position">Head of Mathematics</div>
+                        <div class="staff-contact">📞 +88 <br>📧 ats.aynapur2014@gmail.com</div>
+                    </div>
+                    
+                    <div class="staff-card">
+                        <div class="staff-photo">FA</div>
+                        <div class="staff-name">Mrs. Fatema Akhter</div>
+                        <div class="staff-position">Head of English Dept.</div>
+                        <div class="staff-contact">📞 +88 <br>📧 ats.aynapur2014@gmail.com</div>
+                    </div>
+                </div>
+
+                <h3>Teacher Duty Roster (Sample Week)</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Day/Period</th>
+                                <th>1st (8:00-8:45)</th>
+                                <th>2nd (8:45-9:30)</th>
+                                <th>3rd (9:30-10:15)</th>
+                                <th>4th (10:45-11:30)</th>
+                                <th>5th (11:30-12:15)</th>
+                                <th>6th (12:15-1:00)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Saturday</strong></td>
+                                <td>Mr. Rahman (Math)</td>
+                                <td>Mrs. Salma (Bangla)</td>
+                                <td>Dr. Karim (Physics)</td>
+                                <td>Mrs. Fatema (English)</td>
+                                <td>Mr. Hasan (Chemistry)</td>
+                                <td>Mrs. Nasreen (Biology)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sunday</strong></td>
+                                <td>Mrs. Rashida (History)</td>
+                                <td>Mr. Mizanur (Math)</td>
+                                <td>Mrs. Rehana (Geography)</td>
+                                <td>Dr. Karim (Physics)</td>
+                                <td>Mrs. Salma (Bangla)</td>
+                                <td>Mr. Alamgir (ICT)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Monday</strong></td>
+                                <td>Mrs. Fatema (English)</td>
+                                <td>Mr. Hasan (Chemistry)</td>
+                                <td>Mrs. Nasreen (Biology)</td>
+                                <td>Mr. Rahman (Math)</td>
+                                <td>Mrs. Rashida (History)</td>
+                                <td>Mr. Kamal (Economics)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tuesday</strong></td>
+                                <td>Dr. Karim (Physics)</td>
+                                <td>Mrs. Rehana (Geography)</td>
+                                <td>Mr. Mizanur (Math)</td>
+                                <td>Mrs. Salma (Bangla)</td>
+                                <td>Mrs. Fatema (English)</td>
+                
